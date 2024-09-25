@@ -36,7 +36,7 @@ body {
   .signup-card {
     width: 100%;
     max-width: 400px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 6px 6px 6px rgba(255, 252, 252, 0.1);
     border-radius: 8px;
   }
   

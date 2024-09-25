@@ -10,14 +10,17 @@ function Signup() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Aqui você pode adicionar a lógica para enviar os dados do formulário
-    console.log('Nome:', name);
-    console.log('Email:', email);
-    console.log('Senha:', password);
+    //console.log('Nome:', name);
+    //console.log('Email:', email);
+    //console.log('Senha:', password);
+    axios.post('http://localhost:3001/register', {name, email, password})
+    .then(result => console.log(result))
+    .catch(err=> console.log(err))
   };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
-      <div className="card p-4 signup-card">
+      <div className=" p-4 signup-card">
         <h2 className="text-center">Cadastro</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">

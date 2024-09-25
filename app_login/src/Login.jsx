@@ -15,7 +15,7 @@ function Login() {
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
-      <div className="card p-4 login-card">
+      <div className="p-4 login-card">
         <h2 className="text-center">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
@@ -41,6 +41,9 @@ function Login() {
             />
           </div>
           <button type="submit" className="btn btn-primary w-100">Entrar</button>
+
+          <p className="text-center p-4" >Não tem uma conta? <a href='./register'>Cadastre-se!</a> </p>
+
         </form>
       </div>
     </div>
