@@ -9,6 +9,12 @@ app.use(cors())
 
 mongoose.connect("mongodb://127.0.0.1:27017/name_db");
 
+app.post('/register', (req, res) => {
+    RegisterModel.create(req, res)
+    .then(employes => res.json(register))
+    .catch(err => res.json(err))
+})
+
 app.listen(3001, () => {
 
     app.post('/register', (req, res) => {
