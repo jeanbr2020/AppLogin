@@ -1,8 +1,8 @@
-import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Signup from './Signup';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './Login';
-import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import Signup from './Signup';
 
 function App() {
   return (
