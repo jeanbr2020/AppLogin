@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react';
-import axios from 'axios'; // Adicione a importação do Axios
-import './Signup.css'; // Adicione um arquivo CSS para estilos personalizados
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './Signup.css';
 
 function Signup() {
   const [name, setName] = useState('');
@@ -9,13 +9,31 @@ function Signup() {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [csrfToken, setCsrfToken] = useState('')
+
+  useEffect(() => {
+    const fetchCsrfToken = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/csrf-token', { withCredentials: true });
+        setCsrfToken(response.data.csrfToken);
+      } catch (error) {
+        console.error('Erro ao buscar o token CSRF:', error);
+      }
+    };
+    fetchCsrfToken();
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrorMessage(''); // Limpa mensagens de erro anteriores
-    setSuccessMessage(''); // Limpa mensagens de sucesso anteriores
+    setErrorMessage('');
+    setSuccessMessage('');
 
-    axios.post('http://localhost:3001/register', { name, email, password })
+    axios.post('http://localhost:3001/register', { name, email, password }, {
+      headers: {
+        'CSRF-Token': csrfToken,
+      },
+      withCredentials: true, // Garante que os cookies sejam enviados
+    })
       .then(result => {
         console.log(result);
         setSuccessMessage('Cadastro realizado com sucesso!');
