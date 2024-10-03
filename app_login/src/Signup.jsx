@@ -1,6 +1,6 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
 import './Signup.css';
 
 function Signup() {
@@ -85,6 +85,8 @@ function Signup() {
             />
           </div>
           <button type="submit" className="btn btn-primary w-100">Cadastrar</button>
+
+          <p className="text-center p-4" >Já tem uma conta? <a href='./login'>Entre agora!</a> </p>
         </form>
       </div>
     </div>

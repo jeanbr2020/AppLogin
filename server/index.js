@@ -4,6 +4,8 @@ const cors = require("cors");
 const cookieParser = require('cookie-parser');
 const csurf = require('csurf');
 const RegisterModel = require('./models/Register');
+const LoginModel = require('./models/Login');
+const bcrypt = require('bcrypt');
 
 const app = express();
 app.use(express.json());
@@ -26,7 +28,7 @@ const csrfProtection = csurf({ cookie: true });
 app.use(csrfProtection);
 
 // Conexão com o MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/name_db")
+mongoose.connect("mongodb://127.0.0.1:27017/name_db", { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("Conectado ao MongoDB. Servidor Online na porta 3001"))
     .catch(err => console.error("Erro ao conectar ao MongoDB:", err));
 
@@ -35,22 +37,40 @@ app.get('/csrf-token', (req, res) => {
     res.json({ csrfToken: req.csrfToken() });
 });
 
-// Rota para registro de usuários
-app.post('/register', (req, res) => {
+// Lógica para registro de usuários
+app.post('/register', async (req, res) => {
     const { name, email, password } = req.body;
-    const csrfToken = req.csrfToken(); // Obtém o token CSRF
 
-    RegisterModel.create({ name, email, password, csrfToken }) // Armazena o token
-        .then(register => res.status(201).json({
-            message: 'Cadastro realizado com sucesso!',
-            register
-        }))
-        .catch(err => res.status(400).json({
-            message: 'Erro ao registrar. Verifique os dados.',
-            error: err
-        }));
+    try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = await RegisterModel.create({ name, email, password: hashedPassword });
+        res.status(201).json({ message: 'Cadastro realizado com sucesso!', newUser });
+    } catch (error) {
+        res.status(400).json({ message: 'Erro ao registrar. Verifique os dados.', error });
+    }
 });
 
+// Lógica para login
+app.post("/login", csrfProtection, (req, res) => {
+    const { email, password } = req.body;
+  
+    LoginModel.findOne({ email: email })
+      .then(user => {
+        if (user) {
+          if (user.password === password) {
+            res.json({ message: "Sucesso" });
+          } else {
+            res.json({ message: "Senha incorreta" });
+          }
+        } else {
+          res.json({ message: "Nenhum registro encontrado" });
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ message: "Erro no servidor" });
+      });
+  });
 // Rota para verificar se o servidor está funcionando
 app.get('/', (req, res) => {
     res.send('Servidor está funcionando!');

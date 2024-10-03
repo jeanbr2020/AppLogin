@@ -1,0 +1,9 @@
+curl --location 'http://localhost:3001/login' \
+--header 'Content-Type: application/json' \
+--header 'CSRF-Token: QlEcRzD1-UowyinIk31e4SWMN6eZuugoPmPk' \
+--header 'Cookie: _csrf=g1YYrUntUXNZWXObYTgraNyA' \
+--data-raw '{
+    "email": "qfqwfqwfqw992919219@gmail.com",
+    "password": "okijasfokijfasafsijopafspjoiasfopij"
+}
+'

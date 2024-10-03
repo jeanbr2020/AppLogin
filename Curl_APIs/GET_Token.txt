@@ -1,0 +1,2 @@
+curl --location 'http://localhost:3001/csrf-token' \
+--header 'Cookie: _csrf=g1YYrUntUXNZWXObYTgraNyA'

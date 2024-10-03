@@ -1,0 +1,10 @@
+curl --location 'http://localhost:3001/register' \
+--header 'Content-Type: application/json' \
+--header 'CSRF-Token: ZqqpCQfQ-31Pc565Wb20pO517iazCBlKtyrU' \
+--header 'Cookie: _csrf=g1YYrUntUXNZWXObYTgraNyA' \
+--data-raw '{
+    "name": "fepflefqeplfqeplf",
+    "email": "qfqwfqwfqw992919219@gmail.com",
+    "password": "okijasfokijfasafsijopafspjoiasfopij"
+}
+'
