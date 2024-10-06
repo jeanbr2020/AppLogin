@@ -4,7 +4,7 @@ body {
 }
 
 .login-container {
-  background-color: #1e1e1e; /* Cor de fundo do container de login */
+  background-color: #121212; /* Cor de fundo do container de login */
   padding: 20px; /* Espaçamento interno */
   border-radius: 8px; /* Cantos arredondados */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra do container */
