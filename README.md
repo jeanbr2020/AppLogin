@@ -16,11 +16,12 @@ A Aplicação TO-DO List é uma ferramenta interativa projetada para auxiliar os
 
   - Login de Usuário: Após o cadastro, os usuários podem fazer login com seu email e senha, garantindo acesso às suas tarefas pessoais.
 
-  - Página de Perfil: Cada usuário tem uma página de perfil onde pode visualizar e editar suas informações pessoais. A página permite a adição de uma foto de perfil e um número de telefone, proporcionando uma experiência mais personalizada.
 
-  - Gerenciamento de Tarefas: Os usuários podem criar novas tarefas, editar tarefas existentes e marcar tarefas como concluídas, facilitando a organização de suas atividades diárias.
+
 
 <h2>Funcionalidades em Desenvolvimento</h2>
+
+  - Gerenciamento de Tarefas: Os usuários podem criar novas tarefas, editar tarefas existentes e marcar tarefas como concluídas, facilitando a organização de suas atividades diárias.
 
   - Página de Perfil: Cada usuário tem uma página de perfil onde pode visualizar e editar suas informações pessoais. A página permite a adição de uma foto de perfil e um número de telefone, proporcionando uma experiência mais personalizada.
     
