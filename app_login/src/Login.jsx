@@ -12,20 +12,25 @@ function Login() {
   const [successMessage, setSuccessMessage] = useState('');
   const [csrfToken, setCsrfToken] = useState('');
 
+  // Função para buscar o token CSRF
+  const fetchCsrfToken = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/csrf-token', { withCredentials: true });
+      setCsrfToken(response.data.csrfToken);
+    } catch (error) {
+      console.error('Erro ao buscar o token CSRF:', error);
+    }
+  };
+
   useEffect(() => {
-    const fetchCsrfToken = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/csrf-token', { withCredentials: true });
-        setCsrfToken(response.data.csrfToken);
-      } catch (error) {
-        console.error('Erro ao buscar o token CSRF:', error);
-      }
-    };
     fetchCsrfToken();
   }, []);
 
+  // Função para lidar com o envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage(''); // Limpa mensagens de erro antes do envio
+    setSuccessMessage(''); // Limpa mensagens de sucesso antes do envio
 
     try {
       const result = await axios.post('http://localhost:3001/login', { email, password }, {
@@ -35,50 +40,55 @@ function Login() {
         withCredentials: true,
       });
 
-      if (result.data.message === "Sucesso") {
+      // Verifica a mensagem retornada do servidor
+      if (result.data.message === "Login realizado com sucesso") {
         setSuccessMessage('Login realizado com sucesso!');
-        navigate('/home');
+        navigate('/home'); // Redireciona para a página /home após login bem-sucedido
       } else {
-        setErrorMessage(result.data.message);
+        setErrorMessage(result.data.message); // Mensagem de erro personalizada
       }
     } catch (err) {
-      console.error(err);
-      setErrorMessage('Ocorreu um erro ao entrar. Tente novamente.');
+      if (err.response) {
+        // Se houver uma resposta do servidor
+        setErrorMessage(err.response.data.message || 'Ocorreu um erro ao entrar. Tente novamente.');
+      } else {
+        // Se não houver resposta do servidor
+        setErrorMessage('Ocorreu um erro ao entrar. Tente novamente.');
+      }
     }
   };
-    
+
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100">
+    <div className="login-container d-flex justify-content-center align-items-center vh-100">
       <div className="p-4 login-card">
         <h2 className="text-center">Login</h2>
-        {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
-        {successMessage && <div className="alert alert-success">{successMessage}</div>}
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">Email</label>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
+            <label>Email</label>
+            <input 
+              type="email" 
+              className="form-control" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              required 
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">Senha</label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
+            <label>Senha</label>
+            <input 
+              type="password" 
+              className="form-control" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              required 
             />
           </div>
           <button type="submit" className="btn btn-primary w-100">Entrar</button>
-          <p className="text-center p-4">Não tem uma conta? <a href='./register'>Cadastre-se!</a></p>
+
+          <p className="text-center p-4">Não tem uma conta? <a href='./register'>Cadastre-se agora!</a></p>
         </form>
+        {errorMessage && <div className="alert alert-danger mt-3">{errorMessage}</div>}
+        {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
       </div>
     </div>
   );

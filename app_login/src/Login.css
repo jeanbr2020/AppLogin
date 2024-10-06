@@ -1,42 +1,42 @@
 body {
-    background-color: #121212;
-    color: #ffffff;
-  }
-  
-  .login-container {
-    background-color: #1e1e1e;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .form-control {
-    background-color: #2c2c2c;
-    color: #ffffff;
-    border: 1px solid #444;
-  }
-  
-  .form-control:focus {
-    background-color: #2c2c2c;
-    color: #ffffff;
-    border-color: #555;
-    box-shadow: none;
-  }
-  
-  .btn-primary {
-    background-color: #6200ea;
-    border-color: #6200ea;
-  }
-  
-  .btn-primary:hover {
-    background-color: #3700b3;
-    border-color: #3700b3;
-  }
-  
-  .login-card {
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0px 6px 6px 6px rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-  }
-  
+  background-color: #121212; /* Cor de fundo da página */
+  color: #ffffff; /* Cor do texto */
+}
+
+.login-container {
+  background-color: #1e1e1e; /* Cor de fundo do container de login */
+  padding: 20px; /* Espaçamento interno */
+  border-radius: 8px; /* Cantos arredondados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra do container */
+}
+
+.form-control {
+  background-color: #2c2c2c; /* Cor de fundo dos inputs */
+  color: #ffffff; /* Cor do texto nos inputs */
+  border: 1px solid #444; /* Borda dos inputs */
+}
+
+.form-control:focus {
+  background-color: #2c2c2c; /* Cor de fundo ao focar */
+  color: #ffffff; /* Cor do texto ao focar */
+  border-color: #555; /* Cor da borda ao focar */
+  box-shadow: none; /* Remove sombra padrão */
+}
+
+.btn-primary {
+  background-color: #6200ea; /* Cor do botão */
+  border-color: #6200ea; /* Cor da borda do botão */
+}
+
+.btn-primary:hover {
+  background-color: #3700b3; /* Cor do botão ao passar o mouse */
+  border-color: #3700b3; /* Cor da borda ao passar o mouse */
+}
+
+.login-card {
+  width: 100%; /* Largura total */
+  max-width: 400px; /* Largura máxima */
+  box-shadow: 0px 6px 6px 6px rgba(255, 255, 255, 0.1); /* Sombra do card */
+  border-radius: 8px; /* Cantos arredondados do card */
+  padding: 20px; /* Espaçamento interno do card */
+}

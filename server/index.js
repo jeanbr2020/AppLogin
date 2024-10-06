@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 const cors = require("cors");
 const cookieParser = require('cookie-parser');
 const csurf = require('csurf');
-const RegisterModel = require('./models/Register');
-const LoginModel = require('./models/Login');
 const bcrypt = require('bcrypt');
+
+// Unifique os modelos de registro e login em um só
+const UserModel = require('./models/User'); // Altere o caminho para o seu modelo unificado
 
 const app = express();
 app.use(express.json());
@@ -42,8 +43,17 @@ app.post('/register', async (req, res) => {
     const { name, email, password } = req.body;
 
     try {
+        // Verifica se o email já está cadastrado
+        const existingUser = await UserModel.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: 'Email já cadastrado' });
+        }
+
+        // Criptografa a senha
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newUser = await RegisterModel.create({ name, email, password: hashedPassword });
+
+        // Cria um novo usuário
+        const newUser = await UserModel.create({ name, email, password: hashedPassword });
         res.status(201).json({ message: 'Cadastro realizado com sucesso!', newUser });
     } catch (error) {
         res.status(400).json({ message: 'Erro ao registrar. Verifique os dados.', error });
@@ -51,26 +61,30 @@ app.post('/register', async (req, res) => {
 });
 
 // Lógica para login
-app.post("/login", csrfProtection, (req, res) => {
+app.post("/login", csrfProtection, async (req, res) => {
     const { email, password } = req.body;
-  
-    LoginModel.findOne({ email: email })
-      .then(user => {
-        if (user) {
-          if (user.password === password) {
-            res.json({ message: "Sucesso" });
-          } else {
-            res.json({ message: "Senha incorreta" });
-          }
-        } else {
-          res.json({ message: "Nenhum registro encontrado" });
+
+    try {
+        // Busca o usuário pelo e-mail
+        const user = await UserModel.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: "Nenhum registro encontrado" });
         }
-      })
-      .catch(err => {
+
+        // Compara a senha fornecida com o hash armazenado
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: "Senha incorreta" });
+        }
+
+        // Se a senha estiver correta, sucesso no login
+        res.json({ message: "Login realizado com sucesso", user });
+    } catch (err) {
         console.error(err);
-        res.status(500).json({ message: "Erro no servidor" });
-      });
-  });
+        res.status(500).json({ message: "Erro no servidor", error: err.message });
+    }
+});
+
 // Rota para verificar se o servidor está funcionando
 app.get('/', (req, res) => {
     res.send('Servidor está funcionando!');

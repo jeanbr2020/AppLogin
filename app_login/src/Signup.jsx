@@ -9,7 +9,7 @@ function Signup() {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const [csrfToken, setCsrfToken] = useState('')
+  const [csrfToken, setCsrfToken] = useState('');
 
   useEffect(() => {
     const fetchCsrfToken = async () => {
@@ -23,25 +23,28 @@ function Signup() {
     fetchCsrfToken();
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');
     setSuccessMessage('');
 
-    axios.post('http://localhost:3001/register', { name, email, password }, {
-      headers: {
-        'CSRF-Token': csrfToken,
-      },
-      withCredentials: true, // Garante que os cookies sejam enviados
-    })
-      .then(result => {
-        console.log(result);
-        setSuccessMessage('Cadastro realizado com sucesso!');
-      })
-      .catch(err => {
-        console.log(err);
-        setErrorMessage('Ocorreu um erro ao cadastrar. Tente novamente.');
+    try {
+      const result = await axios.post('http://localhost:3001/register', { name, email, password }, {
+        headers: {
+          'CSRF-Token': csrfToken,
+        },
+        withCredentials: true,
       });
+      setSuccessMessage(result.data.message);
+    } catch (err) {
+      if (err.response) {
+        // Se houver uma resposta do servidor
+        setErrorMessage(err.response.data.message || 'Ocorreu um erro ao cadastrar. Tente novamente.');
+      } else {
+        // Se não houver resposta do servidor
+        setErrorMessage('Ocorreu um erro ao cadastrar. Tente novamente.');
+      }
+    }
   };
 
   return (
@@ -86,7 +89,7 @@ function Signup() {
           </div>
           <button type="submit" className="btn btn-primary w-100">Cadastrar</button>
 
-          <p className="text-center p-4" >Já tem uma conta? <a href='./login'>Entre agora!</a> </p>
+          <p className="text-center p-4">Já tem uma conta? <a href='./login'>Entre agora!</a></p>
         </form>
       </div>
     </div>
