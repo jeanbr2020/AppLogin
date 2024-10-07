@@ -1,0 +1,46 @@
+/* src/components/TaskBoard.css */
+.task-board {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+    height: 500px; /* Ajuste conforme necessário */
+  }
+  
+  .task-column {
+    width: 30%;
+    background-color: #f3f3f3;
+    padding: 10px;
+    border-radius: 8px;
+    min-height: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  .task-column h3 {
+    text-align: center;
+  }
+  
+  .task-item {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: grab;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .task-item:active {
+    cursor: grabbing;
+    transform: scale(1.05);
+  }
+  
+  .task-column.created {
+    background-color: #d1f5ff;
+  }
+  
+  .task-column.inProgress {
+    background-color: #ffe6a7;
+  }
+  
+  .task-column.completed {
+    background-color: #d8ffda;
+  }
+  

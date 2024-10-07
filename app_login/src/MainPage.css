@@ -1,0 +1,11 @@
+/* src/components/MainPage.css */
+.main-container {
+    display: flex;
+  }
+  
+  .task-area {
+    margin-left: 220px; /* Espaço para a sidebar */
+    padding: 20px;
+    width: 100%;
+  }
+  

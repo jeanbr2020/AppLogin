@@ -1,0 +1,33 @@
+.tasklist-container {
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    background-color: #1a1a1a; /* Cor de fundo adaptada */
+    max-width: 600px;
+    margin: 20px auto;
+    color: rgba(255, 255, 255, 0.87); /* Cor do texto */
+  }
+  
+  .task-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .task {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+  }
+  
+  .task.created {
+    background-color: rgba(255, 255, 255, 0.12); /* Cor adaptada */
+  }
+  
+  .task.in-progress {
+    background-color: rgba(255, 255, 0, 0.2); /* Cor amarela suave */
+  }
+  
+  .task.completed {
+    background-color: rgba(0, 255, 0, 0.2); /* Cor verde suave */
+  }
+  

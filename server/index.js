@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 
 // Unifique os modelos de registro e login em um só
 const UserModel = require('./models/User'); // Altere o caminho para o seu modelo unificado
+const TaskModel = require('./models/Task'); // Importa o modelo de tarefas
 
 const app = express();
 app.use(express.json());
@@ -104,6 +105,9 @@ app.post("/login", csrfProtection, async (req, res) => {
     res.status(500).json({ message: "Erro no servidor", error: err.message });
   }
 });
+
+// Rota para tarefas
+app.use('/tasks', require('./task')); // Adiciona as rotas de tarefas
 
 // Rota para verificar se o servidor está funcionando
 app.get('/', (req, res) => {

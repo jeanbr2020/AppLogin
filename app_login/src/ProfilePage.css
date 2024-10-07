@@ -1,0 +1,28 @@
+.profile-container {
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    background-color: #1a1a1a; /* Cor de fundo adaptada */
+    max-width: 400px;
+    margin: 20px auto;
+    color: rgba(255, 255, 255, 0.87); /* Cor do texto */
+  }
+  
+  .profile-info {
+    margin-bottom: 20px;
+  }
+  
+  .edit-button {
+    padding: 10px 15px;
+    background-color: #646cff; /* Cor do botão */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .edit-button:hover {
+    background-color: #535bf2; /* Cor do botão ao passar o mouse */
+  }
+  
