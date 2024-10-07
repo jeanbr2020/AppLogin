@@ -16,24 +16,22 @@ A Aplicação TO-DO List é uma ferramenta interativa projetada para auxiliar os
 
   - Login de Usuário: Após o cadastro, os usuários podem fazer login com seu email e senha, garantindo acesso às suas tarefas pessoais.
 
-
-
-
 <h2>Funcionalidades em Desenvolvimento</h2>
 
-  - Gerenciamento de Tarefas: Os usuários podem criar novas tarefas, editar tarefas existentes e marcar tarefas como concluídas, facilitando a organização de suas atividades diárias.
+  - Gerenciamento de Tarefas: Os usuários podem criar novas tarefas, editar tarefas existentes, facilitando a organização de suas atividades diárias.
 
-  - Página de Perfil: Cada usuário tem uma página de perfil onde pode visualizar e editar suas informações pessoais. A página permite a adição de uma foto de perfil e um número de telefone, proporcionando uma experiência mais personalizada.
-    
-  - Aviso SMS do Prazo da Tarefa: Implementação de notificações via SMS para lembrar os usuários sobre prazos de tarefas.
+  - Definir estado da tarefa, funcionalidade para que os usuários possam facilmente alterar o estado da tarefa entre: A fazer, Em andamento e Concluida
 
   - Salvamento de Tarefas: Persistência e recuperação de tarefas para que os usuários não percam suas informações.
 
   - Edição de Tarefas: Opções avançadas para edição de detalhes das tarefas, incluindo prazos e prioridades.
 
-  - Marcar Tarefa como Concluída: Funcionalidade para que os usuários possam facilmente marcar suas tarefas como concluídas e visualizar suas atividades realizadas.
+  - Página de Perfil: Cada usuário tem uma página de perfil onde pode visualizar e editar suas informações pessoais. A página permite a adição de uma foto de perfil e um número de telefone, proporcionando uma experiência mais personalizada.
+    
+  - Aviso SMS do Prazo da Tarefa: Implementação de notificações via SMS para lembrar os usuários sobre prazos de tarefas.
 
-  - Aviso de Tarefa Atrasada: Notificações para alertar os usuários sobre tarefas que não foram concluídas dentro do prazo.<br>
+ 
+
   <br>
   <br>
 
