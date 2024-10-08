@@ -19,5 +19,4 @@ UserSchema.methods.toJSON = function() {
 
 // Cria o modelo User a partir do esquema
 const UserModel = mongoose.model("User", UserSchema);
-
 module.exports = UserModel;

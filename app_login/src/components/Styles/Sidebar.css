@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    height: 100vh;
+    position: fixed;
+}
+
+.sidebar .profile {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.sidebar .profile-pic {
+    border-radius: 50%;
+    border: 2px solid #ecf0f1;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    padding: 15px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.menu li a:hover {
+    background-color: #34495e;
+    border-radius: 5px;
+}
+
+.menu li i {
+    margin-right: 10px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Sidebar escondida */
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    transition: left 0.3s ease;
+    z-index: 1000; /* Para ficar acima de outros elementos */
+}
+
+.sidebar.open {
+    left: 0; /* Sidebar visível */
+}
+
+.hamburger {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 1100; /* Para ficar acima da sidebar */
+}
+
+.nav {
+    margin-top: 60px; /* Para dar espaço abaixo do botão */
+}
+
+.nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav ul li {
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.nav ul li:hover {
+    background: #555;
+}
